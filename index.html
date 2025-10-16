@@ -1,65 +1,175 @@
-<div class="categories">
-  <!-- Sport 1 -->
-  <div class="category">
-    <a href="https://contoh-sport1.com" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1165/1165821.png" alt="Sport 1">
-      <p>Sport 1</p>
-    </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streaming Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0c0c0c;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background-color: #111;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 60px;
+      position: relative;
+      background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 4s infinite linear;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .search-box input {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      background-color: #222;
+      color: white;
+      width: 200px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 50px;
+      justify-items: center;
+      margin-top: 60px;
+      width: 80%;
+    }
+
+    .category {
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .category:hover {
+      transform: translateY(-8px) scale(1.05);
+    }
+
+    .category img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #1b1b1b;
+      padding: 12px;
+      object-fit: contain;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+      transition: 0.3s;
+    }
+
+    .category img:hover {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .category a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .category p {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sports Hub</h1>
+    <div class="search-box">
+      <input type="text" placeholder="What to watch today?">
+    </div>
+  </header>
+
+  <h2 class="title">Sports Categories</h2>
+
+  <div class="categories">
+    <div class="category">
+      <a href="https://www.fifa.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/1165/1165821.png" alt="Football">
+        <p>Football</p>
+      </a>
+    </div>
+
+    <div class="category">
+      <a href="https://www.volleyballworld.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/861/861342.png" alt="Volleyball">
+        <p>Volleyball</p>
+      </a>
+    </div>
+
+    <div class="category">
+      <a href="https://bwfbadminton.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2889/2889652.png" alt="Badminton">
+        <p>Badminton</p>
+      </a>
+    </div>
+
+    <div class="category">
+      <a href="https://www.atptour.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/861/861361.png" alt="Tennis">
+        <p>Tennis</p>
+      </a>
+    </div>
+
+    <div class="category">
+      <a href="https://www.formula1.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Racing">
+        <p>Racing</p>
+      </a>
+    </div>
+
+    <div class="category">
+      <a href="https://www.ufc.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5731/5731486.png" alt="Combat Sport">
+        <p>Combat Sport</p>
+      </a>
+    </div>
+
+    <div class="category">
+      <a href="https://www.pgatour.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2972/2972391.png" alt="Golf">
+        <p>Golf</p>
+      </a>
+    </div>
+
+    <div class="category">
+      <a href="https://www.nba.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/861/861373.png" alt="Basketball">
+        <p>Basketball</p>
+      </a>
+    </div>
   </div>
 
-  <!-- Sport 2 -->
-  <div class="category">
-    <a href="https://contoh-sport2.com" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/861/861342.png" alt="Sport 2">
-      <p>Sport 2</p>
-    </a>
-  </div>
-
-  <!-- Movies 1 -->
-  <div class="category">
-    <a href="https://contoh-movies1.com" target="_blank">
-      <img src="https://static.thenounproject.com/png/8053087-512.png" alt="Movies 1">
-      <p>Movies 1</p>
-    </a>
-  </div>
-
-  <!-- Movies 2 -->
-  <div class="category">
-    <a href="https://contoh-movies2.com" target="_blank">
-      <img src="https://static.thenounproject.com/png/4301-512.png" alt="Movies 2">
-      <p>Movies 2</p>
-    </a>
-  </div>
-
-  <!-- Movies 3 -->
-  <div class="category">
-    <a href="https://contoh-movies3.com" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/861/861361.png" alt="Movies 3">
-      <p>Movies 3</p>
-    </a>
-  </div>
-
-  <!-- Movies 4 -->
-  <div class="category">
-    <a href="https://contoh-movies4.com" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Movies 4">
-      <p>Movies 4</p>
-    </a>
-  </div>
-
-  <!-- Movies 5 -->
-  <div class="category">
-    <a href="https://contoh-movies5.com" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5731/5731486.png" alt="Movies 5">
-      <p>Movies 5</p>
-    </a>
-  </div>
-
-  <!-- Movies 6 -->
-  <div class="category">
-    <a href="https://contoh-movies6.com" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/861/861373.png" alt="Movies 6">
-      <p>Movies 6</p>
-    </a>
-  </div>
-</div>
+</body>
+</html>
