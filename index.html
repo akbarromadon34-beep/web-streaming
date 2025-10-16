@@ -14,50 +14,77 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      animation: slideBackground 16s infinite alternate ease-in-out;
-      position: relative;
       overflow-x: hidden;
+      background-color: #000;
     }
 
-    /* 🔄 Animasi slide antar dua background */
-    @keyframes slideBackground {
-      0% {
-        background-image: url('https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/assets/background/Peaky%20Blinders.jfif');
-      }
-      50% {
-        background-image: url('https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/assets/background/Squid%20Game%202.jfif');
-      }
-      100% {
-        background-image: url('https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/assets/background/Peaky%20Blinders.jfif');
-      }
-    }
-
-    /* 🔳 Overlay agar teks tetap jelas */
-    body::before {
-      content: "";
+    /* === BACKGROUND SLIDER === */
+    .background-slider {
       position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
       z-index: -1;
     }
 
-    header {
+    .background-slider img {
       width: 100%;
-      background-color: rgba(17, 17, 17, 0.85);
-      padding: 12px 24px;
-      font-size: 2.2rem;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      height: 100%;
+      object-fit: cover; /* biar gambar penuh */
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
     }
 
+    .background-slider img.active {
+      opacity: 1;
+    }
+
+    /* === HEADER === */
+    header {
+      width: 100%;
+      padding: 20px 0;
+      background: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .search-box {
+      margin-top: 10px;
+    }
+
+    .search-box input {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      background-color: rgba(34, 34, 34, 0.8);
+      color: white;
+      width: 240px;
+      text-align: center;
+    }
+
+    /* === TITLE === */
     .title {
       text-align: center;
       font-size: 2rem;
       font-weight: 700;
       margin-top: 60px;
+      position: relative;
       background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
       background-size: 300%;
       -webkit-background-clip: text;
@@ -65,6 +92,7 @@
       animation: gradientMove 4s infinite linear;
       letter-spacing: 2px;
       text-transform: uppercase;
+      z-index: 2;
     }
 
     @keyframes gradientMove {
@@ -73,16 +101,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    .search-box input {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: none;
-      outline: none;
-      background-color: #222;
-      color: white;
-      width: 200px;
-    }
-
+    /* === CATEGORY GRID === */
     .categories {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -90,6 +109,8 @@
       justify-items: center;
       margin-top: 60px;
       width: 80%;
+      z-index: 2;
+      position: relative;
     }
 
     .category {
@@ -102,18 +123,18 @@
     }
 
     .category img {
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      background: #1b1b1b;
-      padding: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px;
       object-fit: contain;
       box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
       transition: 0.3s;
     }
 
     .category img:hover {
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     }
 
     .category a {
@@ -126,16 +147,28 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 768px) {
-      .categories {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-      }
+    /* === BACKGROUND OVERLAY (untuk kontras) === */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
     }
   </style>
 </head>
 <body>
 
+  <!-- BACKGROUND SLIDER -->
+  <div class="background-slider">
+    <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/assets/background/Peaky%20Blinders.jfif" class="active">
+    <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/assets/background/Squid%20Game%202.jfif">
+  </div>
+  <div class="overlay"></div>
+
+  <!-- HEADER -->
   <header>
     <h1>STREAMING HUB</h1>
     <div class="search-box">
@@ -143,65 +176,78 @@
     </div>
   </header>
 
+  <!-- TITLE -->
   <h2 class="title">Streaming Hub</h2>
 
+  <!-- CATEGORIES -->
   <div class="categories">
     <div class="category">
       <a href="https://tv9.idlixku.com/" target="_blank">
-        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/icons/video_14074245.png" alt="Movies 1">
+        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/icons/video_14074245.png" alt="Movies 1">
         <p>Movies 1</p>
       </a>
     </div>
 
     <div class="category">
       <a href="https://d21.team/" target="_blank">
-        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/icons/video_14074245.png" alt="Movies 2">
+        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/icons/video_14074245.png" alt="Movies 2">
         <p>Movies 2</p>
       </a>
     </div>
 
     <div class="category">
       <a href="https://www.ngefilm21.pw/" target="_blank">
-        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/icons/video_14074245.png" alt="Movies 3">
+        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/icons/video_14074245.png" alt="Movies 3">
         <p>Movies 3</p>
       </a>
     </div>
 
     <div class="category">
       <a href="https://v1.pusatfilm21info.com/" target="_blank">
-        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/icons/video_14074245.png" alt="Movies 4">
+        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/icons/video_14074245.png" alt="Movies 4">
         <p>Movies 4</p>
       </a>
     </div>
 
     <div class="category">
       <a href="https://link.oploverz.ltd/" target="_blank">
-        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/icons/vecteezy_luffy-anime-one-piece_21857990.jpg" alt="Anime 1">
+        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/icons/vecteezy_luffy-anime-one-piece_21857990.jpg" alt="Anime 1">
         <p>Anime 1</p>
       </a>
     </div>
 
     <div class="category">
       <a href="https://samehadaku.care/" target="_blank">
-        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/icons/vecteezy_luffy-anime-one-piece_21857990.jpg" alt="Anime 2">
+        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/icons/vecteezy_luffy-anime-one-piece_21857990.jpg" alt="Anime 2">
         <p>Anime 2</p>
       </a>
     </div>
 
     <div class="category">
       <a href="https://www.rbtvplus.com/" target="_blank">
-        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/icons/football.png" alt="Sports 1">
+        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/icons/football.png" alt="Sports 1">
         <p>Sports 1</p>
       </a>
     </div>
 
     <div class="category">
       <a href="https://idn194.livesports088.com/" target="_blank">
-        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/main/icons/football.png" alt="Sports 2">
+        <img src="https://raw.githubusercontent.com/akbarromadon34-beep/web-streaming/refs/heads/main/icons/football.png" alt="Sports 2">
         <p>Sports 2</p>
       </a>
     </div>
   </div>
 
+  <!-- SCRIPT SLIDER -->
+  <script>
+    const slides = document.querySelectorAll('.background-slider img');
+    let index = 0;
+
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 5000);
+  </script>
 </body>
 </html>
